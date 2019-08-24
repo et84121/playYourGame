@@ -10,15 +10,15 @@
         :data="this.$store.state.games"
       >
         <template slot-scope="scope">
-          <td class="is-center">{{scope.row.appid}}</td>
+          <td class="is-center">{{scope.row.appID}}</td>
           <td class="is-center">
-            <img :src="getRealImgUrl(scope.row.appid,scope.row.img_icon_url)" />
+            <img :src="scope.row.iconURL" />
           </td>
           <td class="is-center">
-            <img :src="getRealImgUrl(scope.row.appid,scope.row.img_logo_url)" />
+            <img :src="scope.row.logoURL" />
           </td>
           <td class="is-left">{{scope.row.name}}</td>
-          <td class="is-center">{{scope.row.playtime_forever}}</td>
+          <td class="is-center">{{scope.row.playTime}}</td>
         </template>
       </mu-data-table>
     </mu-paper>
@@ -85,9 +85,6 @@ export default {
       this.list = this.list.sort((a, b) =>
         order === 'asc' ? a[name] - b[name] : b[name] - a[name]
       )
-    },
-    getRealImgUrl (appID, imgUrl) {
-      if (imgUrl) { return `${cdn}/${appID}/${imgUrl}.jpg` } else { return 'https://fakeimg.pl/32x32/ff0000,128/000,255?text=error&font=noto' }
     },
     ...mapActions(['getUserOwnGames'])
   },

@@ -1,8 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
-
-const baseUrl = "http://api.steampowered.com/";
-const axios = require("axios");
+import Axios from "axios";
 
 Vue.use(Vuex);
 
@@ -21,14 +19,11 @@ export default new Vuex.Store({
   },
   actions: {
     getUserOwnGames({ commit }, payload) {
-      axios
-        .get(
-          `${baseUrl}IPlayerService/GetOwnedGames/v1/?key=${this.state.steamkey}&steamid=${payload.steamid}&include_appinfo=true`
-          // { crossdomain: true, headers: { 'Access-Control-Allow-Origin': '*' } }
-        )
-        .then(response => {
-          commit("setGames", { games: response.data.response.games });
-        });
+      Axios.get(
+        `https://untitled-bxtywstplxg0.runkit.sh/getUserOwnedGame?key=${this.state.steamkey}&steamid=${payload.steamid}`
+      ).then(response => {
+        commit("setGames", { games: response.data });
+      });
     }
   }
 });
