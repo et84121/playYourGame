@@ -88,7 +88,6 @@ export default {
       );
     },
     ...mapActions(["getUserOwnGames"])
-    }
   },
   created() {
     this.getUserOwnGames({ steamid: "76561198044167174" });
