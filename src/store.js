@@ -6,7 +6,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    steamkey: "B4E45E111B03BF6393A1659175625D95",
+    steamkey: process.env.VUE_APP_SECRET,
     games: []
   },
   mutations: {

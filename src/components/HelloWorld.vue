@@ -10,15 +10,15 @@
         :data="this.$store.state.games"
       >
         <template slot-scope="scope">
-          <td class="is-center">{{scope.row.appID}}</td>
+          <td class="is-center">{{ scope.row.appID }}</td>
           <td class="is-center">
             <img :src="scope.row.iconURL" />
           </td>
           <td class="is-center">
             <img :src="scope.row.logoURL" />
           </td>
-          <td class="is-left">{{scope.row.name}}</td>
-          <td class="is-center">{{scope.row.playTime}}</td>
+          <td class="is-left">{{ scope.row.name }}</td>
+          <td class="is-center">{{ scope.row.playTime }}</td>
         </template>
       </mu-data-table>
     </mu-paper>
@@ -26,70 +26,72 @@
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex'
+import { mapActions, mapState } from "vuex";
 
-const cdn = 'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps'
+const cdn = "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps";
 
 export default {
-  name: 'HelloWorld',
-  data () {
+  name: "HelloWorld",
+  data() {
     return {
+      openSimple: false,
       sort: {
-        name: '',
-        order: 'asc'
+        name: "",
+        order: "asc"
       },
       columns: [
         {
-          title: 'AppID',
-          name: 'appid',
+          title: "AppID",
+          name: "appid",
           width: 120,
-          align: 'center',
+          align: "center",
           sortable: false
         },
         {
-          title: 'Icon',
-          name: 'icon',
+          title: "Icon",
+          name: "icon",
           width: 80,
-          align: 'center',
+          align: "center",
           sortable: false
         },
         {
-          title: 'Logo',
-          name: 'logo',
+          title: "Logo",
+          name: "logo",
           width: 230,
-          align: 'center',
+          align: "center",
           sortable: false
         },
         {
-          title: 'Game Name',
-          name: 'name',
+          title: "Game Name",
+          name: "name",
           width: 350,
-          align: 'center',
+          align: "center",
           sortable: true
         },
         {
-          title: 'Play Time',
-          name: 'playtime',
+          title: "Play Time",
+          name: "playtime",
           width: 150,
-          align: 'center',
+          align: "center",
           sortable: true
         }
       ]
-    }
+    };
   },
   computed: {
-    ...mapState(['games'])
+    ...mapState(["games"])
   },
   methods: {
-    handleSortChange ({ name, order }) {
+    handleSortChange({ name, order }) {
       this.list = this.list.sort((a, b) =>
-        order === 'asc' ? a[name] - b[name] : b[name] - a[name]
-      )
+        order === "asc" ? a[name] - b[name] : b[name] - a[name]
+      );
     },
-    ...mapActions(['getUserOwnGames'])
+    ...mapActions(["getUserOwnGames"])
+    }
   },
-  created () {
-    this.getUserOwnGames({steamid: '76561198044167174'})
+  created() {
+    this.getUserOwnGames({ steamid: "76561198044167174" });
   }
-}
+};
 </script>
