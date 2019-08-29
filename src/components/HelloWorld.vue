@@ -28,8 +28,6 @@
 <script>
 import { mapActions, mapState } from "vuex";
 
-const cdn = "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps";
-
 export default {
   name: "HelloWorld",
   data() {
